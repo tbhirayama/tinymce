@@ -6,12 +6,25 @@
   <script type="text/javascript">
   tinymce.init({
     selector: 'textarea',  // note the comma at the end of the line!
+    language: "ja",
+    branding: false,
+    init_instance_callback: function (editor) {
+      editor.on('blur', function (e) {
+        console.log('Editor was blurred!');
+      });
+    },
+    custom_ui_selector: '.my-custom-button',
     skin: 'oxide-dark',
-    plugins: 'code image table',
+    // plugins: 'advlist wordcount code image table',
+    toolbar: 'insert',
+    plugins: "image link table",
+    insert_button_items: 'image link | inserttable',
     height: 500,
     width: 800,
     // menubar: 'table',
-    toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code image table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol'
+    // toolbar: 'undo redo styleselect bold italic | alignleft aligncenter alignright | bullist numlist outdent indent code image table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol'
+    // toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons',
+
   });
   </script>
 </head>
@@ -19,6 +32,7 @@
 <body>
   <form method="post">
     <textarea>Hello, World!</textarea>
+    <button class="my-custom-button">Button</button>
   </form>
 </body>
 
