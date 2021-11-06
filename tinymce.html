@@ -4,35 +4,60 @@
 <head>
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script type="text/javascript">
-  tinymce.init({
-    selector: 'textarea',  // note the comma at the end of the line!
-    language: "ja",
-    branding: false,
-    init_instance_callback: function (editor) {
-      editor.on('blur', function (e) {
-        console.log('Editor was blurred!');
-      });
-    },
-    custom_ui_selector: '.my-custom-button',
-    skin: 'oxide-dark',
-    // plugins: 'advlist wordcount code image table',
-    toolbar: 'insert',
-    plugins: "image link table",
-    insert_button_items: 'image link | inserttable',
-    height: 500,
-    width: 800,
-    // menubar: 'table',
-    // toolbar: 'undo redo styleselect bold italic | alignleft aligncenter alignright | bullist numlist outdent indent code image table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol'
-    // toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media | forecolor backcolor emoticons',
 
+  tinymce.init({
+    selector: 'textarea#template',
+    forced_root_block: 'ul',
+    height: 600,
+    plugins: 'template code',
+    menubar: 'insert tools',
+    toolbar: 'template code',
+    template_mdate_format: '%m/%d/%Y : %H:%M',
+    template_replace_values: {
+      username: 'Jack Black',
+      staffid: '991234',
+      inboth_username: 'Famous Person',
+      inboth_staffid: '2213',
+    },
+    template_preview_replace_values: {
+      preview_username: 'Jack Black',
+      preview_staffid: '991234',
+      inboth_username: 'Famous Person',
+      inboth_staffid: '2213',
+    },
+    templates: [
+      {
+        title: 'ボタン',
+        description: 'ボタンテンプレートを挿入します',
+        content: '<li>ボタン</li>'
+      },
+      {
+        title: 'Replace values example',
+        description: 'These values will be replaced when the template is inserted into the editor content.',
+        content: '<p>Name: {$username}, StaffID: {$staffid}</p>'
+      },
+      {
+        title: 'Replace values preview example',
+        description: 'These values are replaced in the preview, but not when inserted into the editor content.',
+        content: '<p>Name: {$preview_username}, StaffID: {$preview_staffid}</p>'
+      },
+      {
+        title: 'Replace values preview and content example',
+        description: 'These values are replaced in the preview, and in the content.',
+        content: '<p>Name: {$inboth_username}, StaffID: {$inboth_staffid}</p>'
+      }
+    ],
+    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
   });
+
+
   </script>
 </head>
 
 <body>
   <form method="post">
-    <textarea>Hello, World!</textarea>
-    <button class="my-custom-button">Button</button>
+    <textarea id="template">
+    </textarea>
   </form>
 </body>
 
