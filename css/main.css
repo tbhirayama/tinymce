@@ -2,9 +2,15 @@
   background-color: #D8D8D8;
   font-size: 14px;
   list-style: none;
-  padding: 15px;
+  padding: 15px 30px 15px 15px;
   display: inline;
+  align-items: center;
+  justify-content: center;
   margin-right: 20px;
+  background-image: url(../images/icon_window.png);
+  background-repeat: no-repeat;
+  background-size: 18px;
+  background-position: 90% 50%;
 }
 .button__item a {
   color: #333;
