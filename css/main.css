@@ -1,0 +1,12 @@
+.button__item {
+  background-color: #D8D8D8;
+  font-size: 14px;
+  list-style: none;
+  padding: 15px;
+  display: inline;
+  margin-right: 20px;
+}
+.button__item a {
+  color: #333;
+  text-decoration: none;
+}
