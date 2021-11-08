@@ -51,15 +51,36 @@
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
   });
 
+  // $('button').on('click', function (e) {
+  //   $('#template').tinymce().$('body div').css("border", "1px solid red");
+  // });
+
+  var $ = tinymce.dom.DomQuery;
+    $('p').attr('attr', 'value').addClass('class');
+
+  $(document).on("click",
+    "#Add",
+    function () {
+      var row =`test`;
+      $("#CmsContentData").append(row);
+      window.tinymceInit();
+    });
 
   </script>
 </head>
 
 <body>
   <form method="post">
+    <button class="js-add-button">ADD BUTTON</button>
     <textarea id="template">
+      hello world<br>
+      <p>hello world border by clicked</p>
     </textarea>
+    <button id="Add">Add</button>
   </form>
+
+  <tbody id="CmsContentData">
+  </tbody>
 </body>
 
 </html>
