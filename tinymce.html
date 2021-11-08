@@ -8,11 +8,12 @@
   tinymce.init({
     selector: 'textarea#template',
     content_css: '/css/main.css',
-    forced_root_block: 'ul',
+    // forced_root_block: 'div',
+    width: 800,
     height: 600,
-    plugins: 'template code link',
-    menubar: 'insert tools',
-    toolbar: 'template code',
+    plugins: 'template code link visualblocks',
+    menubar: 'insert tools view',
+    toolbar: 'template code visualblocks',
     template_mdate_format: '%m/%d/%Y : %H:%M',
     template_replace_values: {
       username: 'Jack Black',
@@ -28,53 +29,30 @@
     },
     templates: [
       {
-        title: 'ボタン',
-        description: 'ボタンテンプレートを挿入します',
+        title: 'ボタン3個（親要素あり）',
+        description: 'ボタンテンプレート（ulタグあり）',
+        content: '<ul><li class="button__item">ボタン</li><li class="button__item">ボタン</li><li class="button__item">ボタン</li></ul>'
+      },
+      {
+        title: 'ボタン単体',
+        description: 'ボタン要素1個',
         content: '<li class="button__item">ボタン</li>'
       },
       {
-        title: 'Replace values example',
-        description: 'These values will be replaced when the template is inserted into the editor content.',
-        content: '<p>Name: {$username}, StaffID: {$staffid}</p>'
+        title: 'ボタン3個（子要素のみ）',
+        description: 'ボタン要素3個',
+        content: '<li class="button__item">ボタン</li><li class="button__item">ボタン</li><li class="button__item">ボタン</li>'
       },
-      {
-        title: 'Replace values preview example',
-        description: 'These values are replaced in the preview, but not when inserted into the editor content.',
-        content: '<p>Name: {$preview_username}, StaffID: {$preview_staffid}</p>'
-      },
-      {
-        title: 'Replace values preview and content example',
-        description: 'These values are replaced in the preview, and in the content.',
-        content: '<p>Name: {$inboth_username}, StaffID: {$inboth_staffid}</p>'
-      }
     ],
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
   });
-
-  // $('button').on('click', function (e) {
-  //   $('#template').tinymce().$('body div').css("border", "1px solid red");
-  // });
-
-  var $ = tinymce.dom.DomQuery;
-    $('p').attr('attr', 'value').addClass('class');
-
-  $(document).on("click",
-    "#Add",
-    function () {
-      var row =`test`;
-      $("#CmsContentData").append(row);
-      window.tinymceInit();
-    });
 
   </script>
 </head>
 
 <body>
   <form method="post">
-    <button class="js-add-button">ADD BUTTON</button>
     <textarea id="template">
-      hello world<br>
-      <p>hello world border by clicked</p>
     </textarea>
     <button id="Add">Add</button>
   </form>

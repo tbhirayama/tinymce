@@ -1,6 +1,7 @@
 .button__item {
   background-color: #D8D8D8;
   font-size: 14px;
+  line-height: 3.2rem;
   list-style: none;
   padding: 15px;
   display: inline;
