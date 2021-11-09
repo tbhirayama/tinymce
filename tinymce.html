@@ -13,12 +13,12 @@
   tinymce.init({
     selector: 'textarea#template',
     content_css: '/css/main.css',
-    forced_root_block: '<div>',
+    // forced_root_block: '<div>',
     width: 800,
     height: 600,
     plugins: 'template code link visualblocks',
     menubar: 'insert tools view',
-    toolbar: 'template code visualblocks',
+    toolbar: 'template code visualblocks basicButtonInsert',
     templates: [
       {
         title: 'ボタン3個（親要素あり）',
@@ -89,7 +89,23 @@
             resolve(results);
           });
         }
+
       });
+
+      /* Helper functions */
+      var buttonHtml = function (date) {
+        return '<button class="button__item">ボタン</button>';
+      };
+
+      /* Basic button that just inserts the date */
+      editor.ui.registry.addButton('basicButtonInsert', {
+        text: 'Insert Button',
+        tooltip: 'Insert Button Design',
+        onAction: function (_) {
+          editor.insertContent(buttonHtml());
+        }
+      });
+
     }
   });
 
