@@ -16,82 +16,11 @@
     // forced_root_block: '<div>',
     width: 800,
     height: 600,
-    plugins: 'template code link visualblocks',
+    plugins: 'code link visualblocks',
     menubar: 'insert tools view',
-    toolbar: 'template code visualblocks basicButtonInsert',
-    templates: [
-      {
-        title: 'ボタン3個（親要素あり）',
-        description: 'ボタンテンプレート（ulタグあり）',
-        content: '<ul><li class="button__item">ボタン</li><li class="button__item">ボタン</li><li class="button__item">ボタン</li></ul>'
-      },
-      {
-        title: 'ボタン単体',
-        description: 'ボタン要素1個',
-        content: '<li class="button__item">ボタン</li>'
-      },
-      {
-        title: 'ボタン3個（子要素のみ）',
-        description: 'ボタン要素3個',
-        content: '<li class="button__item">ボタン</li><li class="button__item">ボタン</li><li class="button__item">ボタン</li>'
-      },
-    ],
+    toolbar: 'code visualblocks basicButtonInsert',
 
     setup: function (editor) {
-      var onAction = function (autocompleteApi, rng, value) {
-        editor.selection.setRng(rng);
-        editor.insertContent(value);
-        autocompleteApi.hide();
-      };
-
-      var getMatchedChars = function (pattern) {
-        return specialChars.filter(function (char) {
-          return char.text.indexOf(pattern) !== -1;
-        });
-      };
-
-      /**
-       * An autocompleter that allows you to insert special characters.
-       * Items are built using the CardMenuItem.
-       */
-      editor.ui.registry.addAutocompleter('specialchars_cardmenuitems', {
-        ch: '-',
-        minChars: 1,
-        columns: 1,
-        highlightOn: ['char_name'],
-        onAction: onAction,
-        fetch: function (pattern) {
-          return new tinymce.util.Promise(function (resolve) {
-            var results = getMatchedChars(pattern).map(function (char) {
-              return {
-                type: 'cardmenuitem',
-                value: char.value,
-                label: char.text,
-                items: [
-                  {
-                    type: 'cardcontainer',
-                    direction: 'vertical',
-                    items: [
-                      {
-                        type: 'cardtext',
-                        text: char.text,
-                        name: 'char_name'
-                      },
-                      {
-                        type: 'cardtext',
-                        text: char.value
-                      }
-                    ]
-                  }
-                ]
-              }
-            });
-            resolve(results);
-          });
-        }
-
-      });
-
       /* Helper functions */
       var buttonHtml = function (date) {
         return '<button class="button__item">ボタン</button>';
@@ -113,10 +42,8 @@
 </head>
 
 <body>
-  <form method="post">
-    <textarea id="template">
-    </textarea>
-  </form>
+  <textarea id="template">
+  </textarea>
 </body>
 
 </html>
